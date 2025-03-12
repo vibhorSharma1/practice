@@ -1,0 +1,424 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: "Poppins", sans-serif;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    perspective: 1000px;
+  }
+  
+  .container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+  }
+  
+  /* 3D Couple Silhouette Animation */
+  .hug-container {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    margin-bottom: 2rem;
+    transform-style: preserve-3d;
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .couple-silhouette {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    animation: gentle-rock 4s ease-in-out infinite;
+  }
+  
+  @keyframes gentle-rock {
+    0% {
+      transform: rotate(0deg);
+    }
+    25% {
+      transform: rotate(3deg);
+    }
+    50% {
+      transform: rotate(0deg);
+    }
+    75% {
+      transform: rotate(-3deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
+  }
+  
+  @keyframes float {
+    0% {
+      transform: translateY(0) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-20px) rotate(5deg);
+    }
+    100% {
+      transform: translateY(0) rotate(0deg);
+    }
+  }
+  
+  .silhouette-inner {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%23ffffff' d='M35,30 C30,45 30,65 35,80 C25,75 20,65 20,50 C20,35 25,25 35,30 Z'/%3E%3Cpath fill='%23ffffff' d='M65,30 C70,45 70,65 65,80 C75,75 80,65 80,50 C80,35 75,25 65,30 Z'/%3E%3Ccircle fill='%23ffffff' cx='50' cy='30' r='15'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transform: translateZ(20px);
+    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.5));
+  }
+  
+  .pulse {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0));
+    border-radius: 50%;
+    opacity: 0;
+    animation: pulse 2s ease-out infinite;
+    z-index: -1;
+  }
+  
+  @keyframes pulse {
+    0% {
+      transform: scale(0.8);
+      opacity: 0;
+    }
+    50% {
+      opacity: 0.5;
+    }
+    100% {
+      transform: scale(1.5);
+      opacity: 0;
+    }
+  }
+  
+  /* Message Styling */
+  .message {
+    text-align: center;
+    max-width: 600px;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    transform: translateY(0);
+    animation: message-float 4s ease-in-out infinite;
+    z-index: 2;
+  }
+  
+  @keyframes message-float {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  
+  .title {
+    font-family: "Dancing Script", cursive;
+    font-size: 4rem;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(to right, #fff, #ffd1dc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+  }
+  
+  .subtitle {
+    font-family: "Dancing Script", cursive;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: #ffd1dc;
+  }
+  
+  .text {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+  
+  .hug-btn {
+    background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+    border: none;
+    padding: 12px 30px;
+    font-size: 1.2rem;
+    color: white;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(255, 154, 158, 0.4);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .hug-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 7px 20px rgba(255, 154, 158, 0.6);
+  }
+  
+  .hug-btn:active {
+    transform: translateY(1px);
+  }
+  
+  .hug-btn::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 150%;
+    height: 150%;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+    transition: transform 0.5s, opacity 0.5s;
+  }
+  
+  .hug-btn:hover::after {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  
+  /* Stars Background */
+  .stars {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+  }
+  
+  .stars::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(2px 2px at 20px 30px, white, rgba(0, 0, 0, 0)),
+      radial-gradient(2px 2px at 40px 70px, white, rgba(0, 0, 0, 0)),
+      radial-gradient(2px 2px at 50px 160px, white, rgba(0, 0, 0, 0)),
+      radial-gradient(2px 2px at 90px 40px, white, rgba(0, 0, 0, 0)),
+      radial-gradient(2px 2px at 130px 80px, white, rgba(0, 0, 0, 0)),
+      radial-gradient(2px 2px at 160px 120px, white, rgba(0, 0, 0, 0));
+    background-repeat: repeat;
+    background-size: 200px 200px;
+    animation: stars-animation 10s linear infinite;
+    opacity: 0.5;
+  }
+  
+  @keyframes stars-animation {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 200px 200px;
+    }
+  }
+  
+  /* Particles */
+  #particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+  }
+  
+  /* Popup */
+  .popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+  }
+  
+  .popup.active {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .popup-content {
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    padding: 2rem;
+    border-radius: 20px;
+    text-align: center;
+    max-width: 400px;
+    transform: scale(0.8);
+    transition: transform 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    position: relative;
+  }
+  
+  .popup.active .popup-content {
+    transform: scale(1);
+  }
+  
+  .popup h2 {
+    font-family: "Dancing Script", cursive;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: white;
+  }
+  
+  .popup p {
+    margin-bottom: 2rem;
+    color: white;
+  }
+  
+  /* Hugging Animation */
+  .hug-animation {
+    width: 100px;
+    height: 80px;
+    margin: 0 auto 1.5rem;
+    position: relative;
+  }
+  
+  .hug-figure {
+    width: 30px;
+    height: 60px;
+    background-color: white;
+    border-radius: 50% 50% 0 0;
+    position: absolute;
+    top: 20px;
+  }
+  
+  .hug-figure::before {
+    content: "";
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border-radius: 50%;
+    position: absolute;
+    top: -15px;
+    left: 5px;
+  }
+  
+  .hug-figure.left {
+    left: 20px;
+    transform-origin: right center;
+    animation: hug-left 1.5s ease-in-out infinite;
+  }
+  
+  .hug-figure.right {
+    right: 20px;
+    transform-origin: left center;
+    animation: hug-right 1.5s ease-in-out infinite;
+  }
+  
+  @keyframes hug-left {
+    0%,
+    100% {
+      transform: rotate(0deg);
+    }
+    50% {
+      transform: rotate(30deg);
+    }
+  }
+  
+  @keyframes hug-right {
+    0%,
+    100% {
+      transform: rotate(0deg);
+    }
+    50% {
+      transform: rotate(-30deg);
+    }
+  }
+  
+  #closeBtn {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  
+  #closeBtn:hover {
+    transform: scale(1.2);
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .hug-container {
+      width: 200px;
+      height: 200px;
+    }
+  
+    .title {
+      font-size: 3rem;
+    }
+  
+    .subtitle {
+      font-size: 2rem;
+    }
+  
+    .message {
+      padding: 1.5rem;
+      margin: 0 1rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .hug-container {
+      width: 150px;
+      height: 150px;
+    }
+  
+    .title {
+      font-size: 2.5rem;
+    }
+  
+    .subtitle {
+      font-size: 1.5rem;
+    }
+  
+    .text {
+      font-size: 1rem;
+    }
+  
+    .hug-btn {
+      padding: 10px 25px;
+      font-size: 1rem;
+    }
+  }
+  
+  
